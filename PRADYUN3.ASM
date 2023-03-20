@@ -3,6 +3,12 @@
 .data
 arry db 5 dup(00)
 sum dw 0000h
+MSGF DB 10,13,"GRADE IS F$"
+MSGE DB 10,13,"GRADE IS E$"
+MSGD DB 10,13,"GRADE IS D$"
+MSGC DB 10,13,"GRADE IS C$"
+MSGB DB 10,13,"GRADE IS B$"
+MSGA DB 10,13,"GRADE IS A$"
 
 .code
 mov ax,@data
@@ -25,6 +31,53 @@ mov bl, 05h
 
 div bl
 
+cmp al, 40h
+JLE M1
+cmp al, 50h
+JLE M2
+cmp al, 60h
+JLE M3
+cmp al, 70h
+JLE M4
+cmp al, 80h
+JLE M5
+
+MOV ah,09h
+LEA dx,MSGA
+INT 21h
+JMP EXIT
+
+M1:
+MOV ah,09h
+LEA dx,MSGF
+INT 21h
+JMP EXIT
+
+M2:
+MOV ah,09h
+LEA dx,MSGE
+INT 21h
+JMP EXIT
+
+M3:
+MOV ah,09h
+LEA dx,MSGD
+INT 21h
+JMP EXIT
+
+M4:
+MOV ah,09h
+LEA dx,MSGC
+INT 21h
+JMP EXIT
+
+M5:
+MOV ah,09h
+LEA dx,MSGB
+INT 21h
+JMP EXIT
+
+EXIT:
 mov ah,4ch
 int 21h
 
