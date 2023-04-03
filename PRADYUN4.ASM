@@ -15,35 +15,35 @@ mov ds,ax
 mov ch,05h  ; set counter
 LEA SI , arry   ; pointer points first location of array
 
-X3:
+A3:
 call accept
 mov [SI],bl
 
 AND BL, 80h
-JNS X1
+JNS A1
 
 inc intn
 inc SI
 dec CH
 
-JNZ X3
+JNZ A3
 
 cmp CH, 00h
-JE X2
+JE A2
 
-X1:
+A1:
 inc intp
 inc SI
 dec CH
-JNZ X3
+JNZ A3
 
-X2:
+A2:
 MOV ah,09h
 LEA dx,MSGP
 INT 21h
 mov dl, intp
 add dl, 30h
-mov ah. 02h
+mov ah, 02h
 int 21h
 
 MOV ah,09h
@@ -51,7 +51,7 @@ LEA dx,MSGN
 INT 21h
 mov dl, intn
 add dl, 30h
-mov ah. 02h
+mov ah, 02h
 int 21h
 
 
